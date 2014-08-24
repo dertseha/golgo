@@ -2,9 +2,8 @@ package main
 
 import (
 	"log"
-	"math"
 
-	"github.com/go-gl/gl"
+	gogl "github.com/go-gl/gl"
 	glfw "github.com/go-gl/glfw3"
 
 	"github.com/dertseha/golgo/native"
@@ -37,43 +36,23 @@ func main() {
 	window.SetSizeCallback(onResize)
 	window.SetKeyCallback(onKey)
 
-	initGL()
-	onResize(window, Width, Height)
+	gogl.Init()
+	wrappedGl := native.CreateGles2Wrapper()
+
+	example := view.NewNeheExample02(wrappedGl, Width, Height)
+	example.Init()
 
 	running = true
 	for running && !window.ShouldClose() {
-
-		view.DrawExampleScene(&native.NativeOpenGl{})
+		example.DrawScene()
 
 		window.SwapBuffers()
 		glfw.PollEvents()
 	}
-
 }
 
 func onResize(window *glfw.Window, w int, h int) {
-	if h == 0 {
-		h = 1
-	}
 
-	gl.Viewport(0, 0, w, h)
-	gl.MatrixMode(gl.PROJECTION)
-	gl.LoadIdentity()
-	setPerspective(90.0/2.0, float64(w)/float64(h), 0.1, 100.0)
-	gl.MatrixMode(gl.MODELVIEW)
-	gl.LoadIdentity()
-}
-
-/**
- * Code to avoid importing GLU. Problem is though that also gl.Frustum was declared
- * deprecated in GL 3.1
- * See http://stackoverflow.com/questions/2417697/gluperspective-was-removed-in-opengl-3-1-any-replacements
- */
-func setPerspective(fieldOfView float64, aspect float64, zNear float64, zFar float64) {
-	fH := math.Tan(fieldOfView/360.0*3.14159) * zNear
-	fW := fH * aspect
-
-	gl.Frustum(-fW, fW, -fH, fH, zNear, zFar)
 }
 
 func onKey(window *glfw.Window, key glfw.Key, unknown int, action glfw.Action, modifier glfw.ModifierKey) {
@@ -81,13 +60,4 @@ func onKey(window *glfw.Window, key glfw.Key, unknown int, action glfw.Action, m
 	case glfw.KeyEscape:
 		running = false
 	}
-}
-
-func initGL() {
-	gl.ShadeModel(gl.SMOOTH)
-	//gl.ClearColor(0, 0, 0, 0)
-	gl.ClearDepth(1)
-	gl.Enable(gl.DEPTH_TEST)
-	gl.DepthFunc(gl.LEQUAL)
-	gl.Hint(gl.PERSPECTIVE_CORRECTION_HINT, gl.NICEST)
 }
