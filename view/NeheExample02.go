@@ -26,7 +26,7 @@ var vertexShaderSource = `
 `
 
 var fragmentShaderSource = `
-  #ifdef GL_ES   
+  #ifdef GL_ES
     precision mediump float;
   #endif
 
@@ -125,7 +125,7 @@ func (example *NeheExample02) initBuffers() {
 		0.0, 1.0, 0.0,
 		-1.0, -1.0, 0.0,
 		1.0, -1.0, 0.0}
-	gl.BufferData(gles.ARRAY_BUFFER, 3*3, vertices, gles.STATIC_DRAW)
+	gl.BufferData(gles.ARRAY_BUFFER, len(vertices)*4, vertices, gles.STATIC_DRAW)
 	checkError(gl, "buffered data 1")
 
 	example.triangleVertexColorBuffer = gl.GenBuffers(1)[0]
@@ -134,7 +134,7 @@ func (example *NeheExample02) initBuffers() {
 		1.0, 0.0, 0.0, 1.0,
 		0.0, 1.0, 0.0, 1.0,
 		0.0, 0.0, 1.0, 1.0}
-	gl.BufferData(gles.ARRAY_BUFFER, 3*4, colors, gles.STATIC_DRAW)
+	gl.BufferData(gles.ARRAY_BUFFER, len(colors)*4, colors, gles.STATIC_DRAW)
 	checkError(gl, "buffered data 2")
 }
 

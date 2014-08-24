@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"runtime"
 
 	gogl "github.com/go-gl/gl"
 	glfw "github.com/go-gl/glfw3"
@@ -18,6 +19,8 @@ const (
 var running bool
 
 func main() {
+	runtime.LockOSThread()
+
 	var err error
 	if !glfw.Init() {
 		log.Fatalf("Failed Init\n")
@@ -25,16 +28,21 @@ func main() {
 	}
 
 	defer glfw.Terminate()
-
+	glfw.WindowHint(glfw.ContextVersionMajor, 2)
+	glfw.WindowHint(glfw.ContextVersionMinor, 0)
+	//glfw.WindowHint(glfw.OpenglForwardCompatible, glfw.True)
+	//glfw.WindowHint(glfw.OpenglProfile, glfw.OpenglCoreProfile)
 	window, err := glfw.CreateWindow(Width, Height, "Window Title", nil, nil)
 	if err != nil {
 		log.Fatalf("%v\n", err)
 		return
 	}
-
-	window.MakeContextCurrent()
+	defer window.Destroy()
 	window.SetSizeCallback(onResize)
 	window.SetKeyCallback(onKey)
+
+	window.MakeContextCurrent()
+	glfw.SwapInterval(1)
 
 	gogl.Init()
 	wrappedGl := native.CreateGles2Wrapper()
