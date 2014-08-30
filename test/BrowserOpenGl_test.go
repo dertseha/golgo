@@ -17,5 +17,5 @@ func (suite *BrowserOpenGlExamplesSuite) TestNeheExample02(c *check.C) {
 
 	time.Sleep(time.Millisecond * 100)
 
-	suite.ThenScreenShouldMatchReference("NeheExample02.png")
+	suite.ThenScreenShouldMatchReference(c, "NeheExample02.png")
 }

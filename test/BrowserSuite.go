@@ -17,7 +17,6 @@ import (
 type BrowserSuite struct {
 	listener net.Listener
 
-	c  *check.C
 	wd selenium.WebDriver
 }
 
@@ -43,7 +42,6 @@ func (suite *BrowserSuite) SetUpTest(c *check.C) {
 		panic(err)
 	}
 
-	suite.c = c
 	suite.wd = wd
 }
 
@@ -51,13 +49,13 @@ func (suite *BrowserSuite) TearDownTest(c *check.C) {
 	suite.wd.Quit()
 }
 
-func (suite *BrowserSuite) ThenScreenShouldMatchReference(refName string) {
+func (suite *BrowserSuite) ThenScreenShouldMatchReference(c *check.C, refName string) {
 	screenshotData, _ := suite.wd.Screenshot()
 	liveImg, err := png.Decode(testUtil.ReadSlice(screenshotData))
-	suite.c.Assert(err, check.IsNil)
+	c.Assert(err, check.IsNil)
 
 	testUtil.SaveImage("screenshots/browser/"+refName, liveImg)
 	confidence := testUtil.GetMatch("resources/"+refName, liveImg)
 
-	suite.c.Check(confidence >= 0.99, check.Equals, true, check.Commentf("Confidence == %f", confidence))
+	c.Check(confidence >= 0.99, check.Equals, true, check.Commentf("Confidence == %f", confidence))
 }

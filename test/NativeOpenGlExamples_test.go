@@ -18,5 +18,5 @@ func (suite *NativeOpenGlExamplesSuite) TestNeheExample02(c *check.C) {
 
 	example.DrawScene()
 
-	suite.ThenScreenShouldMatchReference("NeheExample02.png")
+	suite.ThenScreenShouldMatchReference(c, "NeheExample02.png")
 }

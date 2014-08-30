@@ -17,7 +17,6 @@ type NativeOpenGlSuite struct {
 	width  int
 	height int
 
-	c      *check.C
 	window *glfw.Window
 	gl     gles.OpenGl
 }
@@ -33,7 +32,6 @@ func (suite *NativeOpenGlSuite) SetUpTest(c *check.C) {
 
 	gogl.Init()
 
-	suite.c = c
 	suite.window = window
 	suite.gl = native.CreateGles2Wrapper()
 }
@@ -43,12 +41,12 @@ func (suite *NativeOpenGlSuite) TearDownTest(c *check.C) {
 	glfw.Terminate()
 }
 
-func (suite *NativeOpenGlSuite) ThenScreenShouldMatchReference(refName string) {
+func (suite *NativeOpenGlSuite) ThenScreenShouldMatchReference(c *check.C, refName string) {
 	liveImg, glError := util.ReadPixels(suite.gl, 0, 0, suite.width, suite.height)
-	suite.c.Assert(glError, check.Equals, gles.NO_ERROR)
+	c.Assert(glError, check.Equals, gles.NO_ERROR)
 
 	testUtil.SaveImage("screenshots/native/"+refName, liveImg)
 	confidence := testUtil.GetMatch("resources/"+refName, liveImg)
 
-	suite.c.Check(confidence >= 0.99, check.Equals, true, check.Commentf("Confidence == %f", confidence))
+	c.Check(confidence >= 0.99, check.Equals, true, check.Commentf("Confidence == %f", confidence))
 }
