@@ -58,3 +58,7 @@ const (
 	OUT_OF_MEMORY                      = 0x0505
 	INVALID_FRAMEBUFFER_OPERATION      = 0x0506
 )
+
+const (
+	RGBA uint = 0x1908
+)

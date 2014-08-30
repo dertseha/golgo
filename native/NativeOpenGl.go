@@ -224,6 +224,10 @@ func (native *NativeOpenGl) LinkProgram(program uint) {
 	native.fetchProgram(program).Link()
 }
 
+func (native *NativeOpenGl) ReadPixels(x int, y int, width int, height int, format uint, pixelType uint, pixels interface{}) {
+	gl.ReadPixels(x, y, width, height, gl.GLenum(format), gl.GLenum(pixelType), pixels)
+}
+
 func (native *NativeOpenGl) ShaderSource(shader uint, source string) {
 	native.fetchShader(shader).Source(source)
 }

@@ -42,6 +42,8 @@ type OpenGl interface {
 
 	LinkProgram(program uint)
 
+	ReadPixels(x int, y int, width int, height int, format uint, pixelType uint, pixels interface{})
+
 	ShaderSource(shader uint, source string)
 
 	UniformMatrix4fv(location int, transpose bool, value ...[]float32)

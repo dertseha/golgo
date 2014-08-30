@@ -156,6 +156,10 @@ func (gl *WebGl) LinkProgram(program uint) {
 	gl.gl.LinkProgram(gl.programs.get(program))
 }
 
+func (gl *WebGl) ReadPixels(x int, y int, width int, height int, format uint, pixelType uint, pixels interface{}) {
+	gl.gl.ReadPixels(x, y, width, height, format, pixelType, pixels)
+}
+
 func (gl *WebGl) ShaderSource(shader uint, source string) {
 	gl.gl.ShaderSource(gl.shaders.get(shader), source)
 }
