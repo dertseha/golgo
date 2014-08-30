@@ -34,7 +34,7 @@ func (suite *BrowserSuite) TearDownSuite(c *check.C) {
 }
 
 func (suite *BrowserSuite) SetUpTest(c *check.C) {
-	caps := selenium.Capabilities{"browserName": "chrome"}
+	caps := selenium.Capabilities{"browserName": "firefox"}
 	executor := ""
 
 	wd, err := selenium.NewRemote(caps, executor)
