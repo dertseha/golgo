@@ -1,3 +1,5 @@
+[![Build Status][drone-image]][drone-url]
+
 # Game Of Life in Go
 
 This project is an implementation of [Conway's Game of Life](http://en.wikipedia.org/wiki/Conways_Game_of_Life) in [Go](http://golang.org/). It uses OpenGL for visualization, which can be run both native and in a web-browser.
@@ -47,3 +49,6 @@ and a [Selenium Server](http://docs.seleniumhq.org/download/) running. (Note: No
 ## License
 
 The project is available under the terms of the **New BSD License** (see LICENSE file).
+
+[drone-url]: https://drone.io/github.com/dertseha/golgo/latest
+[drone-image]: https://drone.io/github.com/dertseha/golgo/status.png
