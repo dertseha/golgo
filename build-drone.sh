@@ -50,6 +50,7 @@ go get bitbucket.org/tebeka/selenium
 go test ./...
 
 # Run coverage analysis
+go get code.google.com/p/go.tools/cmd/cover
 go get github.com/axw/gocov/gocov
 go get github.com/mattn/goveralls
-goveralls -v -service drone.io -repotoken $COVERALLS_TOKEN
+COVERALLS="-service drone.io -repotoken $COVERALLS_TOKEN" bash ./test-coverage.sh
