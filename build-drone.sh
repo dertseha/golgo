@@ -8,8 +8,10 @@ sudo apt-get install libglfw-dev
 sudo apt-get install curl git mercurial make binutils bison gcc build-essential
 
 # Install gvm to manage Go versions
-bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer >gvm-installer.sh
+sh ./gvm-installer.sh
 source /home/ubuntu/.gvm/scripts/gvm
+# Select go1.3 for gopherjs
 gvm install go1.3
 gvm list
 gvm use go1.3
