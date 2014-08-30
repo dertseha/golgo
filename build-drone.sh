@@ -1,12 +1,10 @@
-# Print current values
-echo "GOROOT: " $GOROOT
-echo "GOPATH: " $GOPATH
-
-# Update system and install development packages
+# Update system to allow further installations
 sudo apt-get update
+# Install dependencies for go-gl/glew3
 sudo apt-get install xorg-dev 
 sudo apt-get install libglew-dev
 sudo apt-get install libglfw-dev
+# Install dependencies for gvm
 sudo apt-get install curl git mercurial make binutils bison gcc build-essential
 
 # Install gvm to manage Go versions
@@ -15,16 +13,15 @@ source /home/ubuntu/.gvm/scripts/gvm
 gvm install go1.3
 gvm list
 gvm use go1.3
-echo "GOROOT: " $GOROOT
-echo "GOPATH: " $GOPATH
+# Revert GOPATH to be the original value drone.io had
 export GOPATH=~
-echo "GOPATH: " $GOPATH
 
 # Retrieve and start Selenium server. Do this early in order to have it running.
 sudo start xvfb
 wget http://selenium.googlecode.com/files/selenium-server-standalone-2.35.0.jar --quiet
 java -jar selenium-server-standalone-2.35.0.jar &
 
+# Clone, compile and install glfw3 -- note special flags
 pushd ~
 git clone https://github.com/glfw/glfw.git
 cd glfw
@@ -33,15 +30,18 @@ make
 sudo make install
 popd
 
+# Get all dependencies
 go get -u github.com/gopherjs/gopherjs
 go get -u github.com/gopherjs/webgl
-# CGO_CFLAGS="-I/usr/local/include" CGO_LDFLAGS="-L/usr/local/lib" go get 
 go get
 
+# Build both native and browser binaries
 go build
 $GOPATH/bin/gopherjs build -o ./build/golgo-js.js golgo-js/golgo-js.go
 
+# Get further dependencies for tests
 go get gopkg.in/check.v1
 go get bitbucket.org/tebeka/selenium
 
+# Run all tests
 go test ./...
