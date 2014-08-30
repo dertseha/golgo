@@ -29,6 +29,20 @@ $GOPATH/bin/gopherjs build -o ./build/golgo-js.js golgo-js/golgo-js.go
 ```
 The output files will be under the ```build``` directory, which is also referenced by the ```golgo-js.html``` file. Open this html file in a browser supporting WebGL to run the application.
 
+## Testing
+For testing, you need to have the test framework ```gocheck``` installed:
+```
+go get gopkg.in/check.v1
+```
+
+### OpenGL Tests
+To test OpenGL and all output it is necessary to create windows and/or run a browser. These tests are in the folder ```test```.
+
+For these tests, another dependency is necessary to be installed:
+```
+go get bitbucket.org/tebeka/selenium
+```
+and a [Selenium Server](http://docs.seleniumhq.org/download/) running. (Note: Not every version works as it seems; v2.39.0 works so far)
 
 ## License
 
