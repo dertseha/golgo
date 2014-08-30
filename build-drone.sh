@@ -52,4 +52,4 @@ go test ./...
 # Run coverage analysis
 go get github.com/axw/gocov/gocov
 go get github.com/mattn/goveralls
-goveralls -v -service drone.io $COVERALLS_TOKEN
+goveralls -v -service drone.io -repotoken $COVERALLS_TOKEN
