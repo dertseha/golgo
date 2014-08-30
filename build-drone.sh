@@ -48,3 +48,8 @@ go get bitbucket.org/tebeka/selenium
 
 # Run all tests
 go test ./...
+
+# Run coverage analysis
+go get github.com/axw/gocov/gocov
+go get github.com/mattn/goveralls
+goveralls -v -service drone.io $COVERALLS_TOKEN

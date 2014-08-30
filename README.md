@@ -1,4 +1,5 @@
 [![Build Status][drone-image]][drone-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
 
 # Game Of Life in Go
 
@@ -52,3 +53,5 @@ The project is available under the terms of the **New BSD License** (see LICENSE
 
 [drone-url]: https://drone.io/github.com/dertseha/golgo/latest
 [drone-image]: https://drone.io/github.com/dertseha/golgo/status.png
+[coveralls-url]: https://coveralls.io/r/dertseha/golgo
+[coveralls-image]: https://coveralls.io/repos/dertseha/golgo/badge.png
