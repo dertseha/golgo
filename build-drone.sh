@@ -1,3 +1,4 @@
+#!/bin/bash  
 # Update system to allow further installations
 sudo apt-get update
 # Install dependencies for go-gl/glew3
@@ -9,7 +10,7 @@ sudo apt-get install curl git mercurial make binutils bison gcc build-essential
 
 # Install gvm to manage Go versions
 curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer >gvm-installer.sh
-sh ./gvm-installer.sh
+bash ./gvm-installer.sh
 source /home/ubuntu/.gvm/scripts/gvm
 # Select go1.3 for gopherjs
 gvm install go1.3
