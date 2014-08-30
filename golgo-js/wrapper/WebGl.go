@@ -157,7 +157,7 @@ func (gl *WebGl) LinkProgram(program uint) {
 }
 
 func (gl *WebGl) ReadPixels(x int, y int, width int, height int, format uint, pixelType uint, pixels interface{}) {
-	gl.gl.ReadPixels(x, y, width, height, format, pixelType, pixels)
+	gl.gl.Call("readPixels", x, y, width, height, int(format), int(pixelType), pixels)
 }
 
 func (gl *WebGl) ShaderSource(shader uint, source string) {
