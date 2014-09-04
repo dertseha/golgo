@@ -12,8 +12,6 @@ import (
 	check "gopkg.in/check.v1"
 )
 
-// http://godoc.org/bitbucket.org/tebeka/selenium
-
 type BrowserSuite struct {
 	listener net.Listener
 
