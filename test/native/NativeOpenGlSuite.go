@@ -1,4 +1,4 @@
-package test
+package native
 
 import (
 	"path"
@@ -23,6 +23,22 @@ type NativeOpenGlSuite struct {
 	gl     gles.OpenGl
 }
 
+func NewNativeOpenGlSuite(width, height int) NativeOpenGlSuite {
+	return NativeOpenGlSuite{width: width, height: height}
+}
+
+func (suite *NativeOpenGlSuite) Width() int {
+	return suite.width
+}
+
+func (suite *NativeOpenGlSuite) Height() int {
+	return suite.height
+}
+
+func (suite *NativeOpenGlSuite) OpenGl() gles.OpenGl {
+	return suite.gl
+}
+
 func (suite *NativeOpenGlSuite) SetUpTest(c *check.C) {
 	glfw.Init()
 	glfw.WindowHint(glfw.ContextVersionMajor, 2)
@@ -44,7 +60,7 @@ func (suite *NativeOpenGlSuite) TearDownTest(c *check.C) {
 }
 
 func (suite *NativeOpenGlSuite) ThenScreenShouldMatchReference(c *check.C, refName string) {
-	screenshotPath := path.Join(testUtil.GetProjectRootPath(), "test", "screenshots", "native", c.TestName()+refName)
+	screenshotPath := path.Join(testUtil.GetProjectRootPath(), "test", "screenshots", "native", c.TestName()+"."+refName)
 	referencePath := path.Join(testUtil.GetProjectRootPath(), "test", "resources", refName)
 	liveImg, glError := util.ReadPixels(suite.gl, 0, 0, suite.width, suite.height)
 	c.Assert(glError, check.Equals, gles.NO_ERROR)

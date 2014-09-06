@@ -1,6 +1,8 @@
-package test
+package native
 
 import (
+	"github.com/dertseha/golgo/test"
+
 	check "gopkg.in/check.v1"
 )
 
@@ -8,12 +10,12 @@ type NativeOpenGlExamplesSuite struct {
 	NativeOpenGlSuite
 }
 
-var _ = check.Suite(&NativeOpenGlExamplesSuite{NativeOpenGlSuite{width: 640, height: 480}})
+var _ = check.Suite(&NativeOpenGlExamplesSuite{NewNativeOpenGlSuite(640, 480)})
 
 func (suite *NativeOpenGlExamplesSuite) TestClearBackground(c *check.C) {
-	app := &clearBackgroundApplication{}
+	app := test.NewClearBackgroundApplication()
 
-	app.Init(suite.gl, suite.width, suite.height)
+	app.Init(suite.OpenGl(), suite.Width(), suite.Height())
 
 	app.Render()
 
@@ -21,9 +23,9 @@ func (suite *NativeOpenGlExamplesSuite) TestClearBackground(c *check.C) {
 }
 
 func (suite *NativeOpenGlExamplesSuite) TestNeheExample02(c *check.C) {
-	app := NewNeheExample02Application()
+	app := test.NewNeheExample02Application()
 
-	app.Init(suite.gl, suite.width, suite.height)
+	app.Init(suite.OpenGl(), suite.Width(), suite.Height())
 
 	app.Render()
 

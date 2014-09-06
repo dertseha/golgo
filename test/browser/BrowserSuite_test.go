@@ -1,4 +1,4 @@
-package test
+package browser
 
 import (
 	"image/png"
@@ -42,7 +42,7 @@ type BrowserSuite struct {
 }
 
 func (suite *BrowserSuite) SetUpSuite(c *check.C) {
-	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("../"))))
+	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir(testUtil.GetProjectRootPath()))))
 	listener, err := net.Listen("tcp", ":8080")
 	c.Assert(err, check.IsNil)
 	go http.Serve(listener, nil)
@@ -109,7 +109,7 @@ func (suite *BrowserSuite) WhenTheApplicationWasRenderedOnce() {
 }
 
 func (suite *BrowserSuite) ThenScreenShouldMatchReference(c *check.C, refName string) {
-	screenshotPath := path.Join(testUtil.GetProjectRootPath(), "test", "screenshots", "browser", c.TestName()+refName)
+	screenshotPath := path.Join(testUtil.GetProjectRootPath(), "test", "screenshots", "browser", c.TestName()+"."+refName)
 	referencePath := path.Join(testUtil.GetProjectRootPath(), "test", "resources", refName)
 	screenshotData, _ := suite.wd.Screenshot()
 	liveImg, err := png.Decode(testUtil.ReadSlice(screenshotData))

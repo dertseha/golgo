@@ -1,4 +1,4 @@
-package test
+package browser
 
 import (
 	testUtil "github.com/dertseha/golgo/test/util"
