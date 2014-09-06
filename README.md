@@ -28,7 +28,7 @@ go install .
 ### Browser
 The web-browser build is compiled, from the root of the project, calling
 ```
-$GOPATH/bin/gopherjs build -o ./build/golgo-js.js golgo-js/golgo-js.go 
+$GOPATH/bin/gopherjs build -o ./build/golgo-js.js golgo-js/*.go
 ```
 The output files will be under the ```build``` directory, which is also referenced by the ```golgo-js.html``` file. Open this html file in a browser supporting WebGL to run the application.
 

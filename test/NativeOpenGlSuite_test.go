@@ -1,6 +1,8 @@
 package test
 
 import (
+	"path"
+
 	gogl "github.com/go-gl/gl"
 	glfw "github.com/go-gl/glfw3"
 
@@ -42,11 +44,13 @@ func (suite *NativeOpenGlSuite) TearDownTest(c *check.C) {
 }
 
 func (suite *NativeOpenGlSuite) ThenScreenShouldMatchReference(c *check.C, refName string) {
+	screenshotPath := path.Join(testUtil.GetProjectRootPath(), "test", "screenshots", "native", c.TestName()+refName)
+	referencePath := path.Join(testUtil.GetProjectRootPath(), "test", "resources", refName)
 	liveImg, glError := util.ReadPixels(suite.gl, 0, 0, suite.width, suite.height)
 	c.Assert(glError, check.Equals, gles.NO_ERROR)
 
-	testUtil.SaveImage("screenshots/native/"+refName, liveImg)
-	confidence := testUtil.GetMatch("resources/"+refName, liveImg)
+	testUtil.SaveImage(screenshotPath, liveImg)
+	confidence := testUtil.GetMatch(referencePath, liveImg)
 
 	c.Check(confidence >= 0.99, check.Equals, true, check.Commentf("Confidence == %f", confidence))
 }

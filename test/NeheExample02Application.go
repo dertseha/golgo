@@ -1,4 +1,4 @@
-package view
+package test
 
 import (
 	"fmt"
@@ -54,11 +54,8 @@ type NeheExample02 struct {
 	mvMatrixUniform int
 }
 
-func NewNeheExample02(gl gles.OpenGl, width int, height int) *NeheExample02 {
-	result := &NeheExample02{
-		gl:     gl,
-		width:  width,
-		height: height}
+func NewNeheExample02Application() *NeheExample02 {
+	result := &NeheExample02{}
 
 	return result
 }
@@ -153,8 +150,11 @@ func (example *NeheExample02) perspective(fovy float32, aspect float32, near flo
 	example.pMatrix.AssignPerspectiveProjection(-right, right, -top, top, 0.1, 100.0)
 }
 
-func (example *NeheExample02) Init() {
-	gl := example.gl
+func (example *NeheExample02) Init(gl gles.OpenGl, width int, height int) {
+	example.gl = gl
+	example.width = width
+	example.height = height
+
 	example.initShaders()
 	example.initBuffers()
 
@@ -162,7 +162,11 @@ func (example *NeheExample02) Init() {
 	gl.Enable(gles.DEPTH_TEST)
 }
 
-func (example *NeheExample02) DrawScene() {
+func (example *NeheExample02) Resize(width, height int) {
+
+}
+
+func (example *NeheExample02) Render() {
 	gl := example.gl
 	gl.Viewport(0, 0, example.width, example.height)
 	checkError(gl, "viewport")

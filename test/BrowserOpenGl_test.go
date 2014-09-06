@@ -1,8 +1,6 @@
 package test
 
 import (
-	"time"
-
 	testUtil "github.com/dertseha/golgo/test/util"
 
 	check "gopkg.in/check.v1"
@@ -23,9 +21,17 @@ func (suite *BrowserOpenGlExamplesSuite) SetUpTest(c *check.C) {
 }
 
 func (suite *BrowserOpenGlExamplesSuite) TestNeheExample02(c *check.C) {
-	suite.wd.Get("localhost:8080/golgo-js.html")
+	suite.GivenARunningApplication(c, "github.com/dertseha/golgo/test", "test.NewNeheExample02Application()")
 
-	time.Sleep(time.Millisecond * 100)
+	suite.WhenTheApplicationWasRenderedOnce()
 
 	suite.ThenScreenShouldMatchReference(c, "NeheExample02.png")
+}
+
+func (suite *BrowserOpenGlExamplesSuite) TestClearBackground(c *check.C) {
+	suite.GivenARunningApplication(c, "github.com/dertseha/golgo/test", "test.NewClearBackgroundApplication()")
+
+	suite.WhenTheApplicationWasRenderedOnce()
+
+	suite.ThenScreenShouldMatchReference(c, "ClearBackground.png")
 }
