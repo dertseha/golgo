@@ -36,7 +36,8 @@ popd
 # Get all dependencies
 go get -u github.com/gopherjs/gopherjs
 go get -u github.com/gopherjs/webgl
-go get
+go get -u github.com/ungerik/go3d
+go get -t
 
 # Build both native and browser binaries
 go build
