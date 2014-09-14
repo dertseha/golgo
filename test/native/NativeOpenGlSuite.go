@@ -7,7 +7,7 @@ import (
 	glfw "github.com/go-gl/glfw3"
 
 	gles "github.com/dertseha/golgo/gles2"
-	"github.com/dertseha/golgo/native"
+	"github.com/dertseha/golgo/runner/native"
 	"github.com/dertseha/golgo/util"
 
 	testUtil "github.com/dertseha/golgo/test/util"

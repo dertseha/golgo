@@ -1,14 +1,13 @@
-package runner
+package browser
 
 import (
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/gopherjs/webgl"
 
-	"github.com/dertseha/golgo/app"
-	"github.com/dertseha/golgo/golgo-js/wrapper"
+	"github.com/dertseha/golgo/runner"
 )
 
-func Run(application app.Application, param app.ApplicationParameter) {
+func Run(application runner.Application, param runner.ApplicationParameter) {
 	document := js.Global.Get("document")
 	document.Set("title", param.Title())
 
@@ -25,14 +24,14 @@ func Run(application app.Application, param app.ApplicationParameter) {
 		panic(err)
 	}
 
-	gl := wrapper.CreateGles2Wrapper(glContext)
+	gl := CreateGles2Wrapper(glContext)
 
 	application.Init(gl, param.Width(), param.Height())
 
 	requestAnimation(application)
 }
 
-func requestAnimation(application app.Application) {
+func requestAnimation(application runner.Application) {
 	window := js.Global.Get("window")
 	type indirecterType struct {
 		render func()

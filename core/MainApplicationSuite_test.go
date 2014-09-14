@@ -1,4 +1,4 @@
-package app
+package core
 
 import (
 	"github.com/dertseha/golgo/test/native"

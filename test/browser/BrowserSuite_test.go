@@ -22,16 +22,16 @@ import (
 const mainSource = `package main
 
 import (
-	"github.com/dertseha/golgo/app"
-	runner "github.com/dertseha/golgo/golgo-js/runner"
+	"github.com/dertseha/golgo/runner"
+	"github.com/dertseha/golgo/runner/browser"
 	"%s"
 )
 
 func main() {
-	param := app.DefaultApplicationParameter()
+	param := runner.BasicApplicationParameter(640, 480, "UnitTest")
 	application := %s
 
-	runner.Run(application, param)
+	browser.Run(application, param)
 }
 `
 

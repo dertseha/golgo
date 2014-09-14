@@ -40,8 +40,8 @@ go get -u github.com/ungerik/go3d
 go get -t
 
 # Build both native and browser binaries
-go build
-$GOPATH/bin/gopherjs build -o ./build/golgo-js.js golgo-js/golgo-js.go
+go build -o ./build/golgo ./app/golgo
+$GOPATH/bin/gopherjs build -o ./build/golgo-js.js ./app/golgo-js/*.go
 
 # Get further dependencies for tests
 go get gopkg.in/check.v1

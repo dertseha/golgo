@@ -1,4 +1,4 @@
-package wrapper
+package browser
 
 import (
 	"github.com/gopherjs/gopherjs/js"

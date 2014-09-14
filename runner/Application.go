@@ -1,4 +1,4 @@
-package app
+package runner
 
 import (
 	gles "github.com/dertseha/golgo/gles2"
