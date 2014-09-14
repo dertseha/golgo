@@ -37,7 +37,7 @@ popd
 go get -u github.com/gopherjs/gopherjs
 go get -u github.com/gopherjs/webgl
 go get -u github.com/ungerik/go3d
-go get -t
+go get -t ./app/...
 
 # Build both native and browser binaries
 go build -o ./build/golgo ./app/golgo
