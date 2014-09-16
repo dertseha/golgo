@@ -23,7 +23,7 @@ func GetMatch(refName string, input image.Image) float32 {
 	equal := 0
 	for y := 0; y < dy; y++ {
 		for x := 0; x < dx; x++ {
-			if DoesPixelMatch(refImg.At(x, y), x, y, input, 5) {
+			if DoesPixelMatch(refImg.At(x, y), x, y, input, 5*0x100) {
 				equal++
 			}
 		}
@@ -65,10 +65,10 @@ func DoesColorMatch(p1 color.Color, p2 color.Color, delta int) bool {
 	r1, g1, b1, a1 := p1.RGBA()
 	r2, g2, b2, a2 := p2.RGBA()
 
-	return math.Abs(float64(r1-r2)) <= float64(delta) &&
-		math.Abs(float64(g1-g2)) <= float64(delta) &&
-		math.Abs(float64(b1-b2)) <= float64(delta) &&
-		math.Abs(float64(a1-a2)) <= float64(delta)
+	return math.Abs(float64(r1)-float64(r2)) <= float64(delta) &&
+		math.Abs(float64(g1)-float64(g2)) <= float64(delta) &&
+		math.Abs(float64(b1)-float64(b2)) <= float64(delta) &&
+		math.Abs(float64(a1)-float64(a2)) <= float64(delta)
 }
 
 func SaveImage(name string, img image.Image) {
