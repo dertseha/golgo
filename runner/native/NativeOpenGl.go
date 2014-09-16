@@ -232,20 +232,8 @@ func (native *NativeOpenGl) ShaderSource(shader uint, source string) {
 	native.fetchShader(shader).Source(source)
 }
 
-func (native *NativeOpenGl) UniformMatrix4fv(location int, transpose bool, value ...[]float32) {
-	mapped := make([][16]float32, 0)
-	for _, entry := range value {
-		mappedEntry := [16]float32{}
-
-		for i := 0; i < 16; i++ {
-			mappedEntry[i] = entry[i]
-		}
-
-		//copy(mappedEntry[:], entry[0:16])
-		mapped = append(mapped, mappedEntry)
-	}
-	native.fetchUniform(location).UniformMatrix4fv(transpose, mapped...)
-	//native.fetchUniform(location).UniformMatrix4f(transpose, &mapped[0])
+func (native *NativeOpenGl) UniformMatrix4fv(location int, transpose bool, value *[16]float32) {
+	native.fetchUniform(location).UniformMatrix4f(transpose, value)
 }
 
 func (native *NativeOpenGl) UseProgram(program uint) {

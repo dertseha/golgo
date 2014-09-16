@@ -137,9 +137,9 @@ func (example *NeheExample02) initBuffers() {
 
 func (example *NeheExample02) setMatrixUniforms() {
 	gl := example.gl
-	gl.UniformMatrix4fv(example.pMatrixUniform, false, example.pMatrix.Slice())
+	gl.UniformMatrix4fv(example.pMatrixUniform, false, example.pMatrix.Array())
 	checkError(gl, "set uniforms 1")
-	gl.UniformMatrix4fv(example.mvMatrixUniform, false, example.mvMatrix.Slice())
+	gl.UniformMatrix4fv(example.mvMatrixUniform, false, example.mvMatrix.Array())
 	checkError(gl, "set uniforms 2")
 }
 

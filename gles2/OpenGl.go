@@ -46,7 +46,7 @@ type OpenGl interface {
 
 	ShaderSource(shader uint, source string)
 
-	UniformMatrix4fv(location int, transpose bool, value ...[]float32)
+	UniformMatrix4fv(location int, transpose bool, value *[16]float32)
 	UseProgram(program uint)
 
 	VertexAttribOffset(index int, size int, attribType uint, normalized bool, stride int, offset int)

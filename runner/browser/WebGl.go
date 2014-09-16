@@ -164,15 +164,10 @@ func (gl *WebGl) ShaderSource(shader uint, source string) {
 	gl.gl.ShaderSource(gl.shaders.get(shader), source)
 }
 
-func (gl *WebGl) UniformMatrix4fv(location int, transpose bool, value ...[]float32) {
-	var args []interface{} = make([]interface{}, 0, 2+len(value))
-
-	args = append(args, gl.uniforms.get(uint(location)), transpose)
-	for _, entry := range value {
-		args = append(args, entry)
-	}
-	gl.gl.Call("uniformMatrix4fv", args...)
+func (gl *WebGl) UniformMatrix4fv(location int, transpose bool, value *[16]float32) {
+	gl.gl.Call("uniformMatrix4fv", gl.uniforms.get(uint(location)), transpose, *value)
 }
+
 func (gl *WebGl) UseProgram(program uint) {
 	gl.gl.UseProgram(gl.programs.get(program))
 }
