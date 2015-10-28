@@ -24,3 +24,16 @@ This file collects some resources that can be helpful during development. They c
 ###Selenium
 * http://godoc.org/bitbucket.org/tebeka/selenium
 
+##Tesselation
+* http://en.wikipedia.org/wiki/List_of_regular_polytopes#Tessellations
+** One for line: {∞}
+** Three for 2-space: square ({4,4}), triangular ({3,6}), hexagonal ({6,3})
+** One for 3-space: cube ({4,3,4} - cell type {4,3})
+* http://en.wikipedia.org/wiki/Honeycomb_(geometry)
+** http://en.wikipedia.org/wiki/Bitruncated_cubic_honeycomb (t{3,4})
+
+* http://en.wikipedia.org/wiki/Permutohedron
+** http://en.wikipedia.org/wiki/Apeirogon
+** http://en.wikipedia.org/wiki/Hexagonal_tiling
+
+* http://en.wikipedia.org/wiki/Cairo_pentagonal_tiling (no schläfli symbol)

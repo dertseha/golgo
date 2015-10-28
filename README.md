@@ -1,6 +1,8 @@
 [![Build Status][drone-image]][drone-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 
+**This project is currently on hold. For now it serves only as a basis for OpenGL programs in Go that work both native and in the browser.**
+
 # Game Of Life in Go
 
 This project is an implementation of [Conway's Game of Life](http://en.wikipedia.org/wiki/Conways_Game_of_Life) in [Go](http://golang.org/). It uses OpenGL for visualization, which can be run both native and in a web-browser.
